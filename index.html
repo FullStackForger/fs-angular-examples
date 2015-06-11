@@ -8,7 +8,11 @@
 	<!-- <link rel="stylesheet" href="css/app.css"> -->
 </head>
 <body>
-<p>{{'Angular' + ' ' + 'Bootstrap'}}</p>
+
+<!-- simple model and two-way data binding demo -->
+<p>Hello, {{ user }}!</p>
+<input type="text" ng-model="user">
+
 <script src="bower_components/angular/angular.js"></script>
 </body>
 </html>
