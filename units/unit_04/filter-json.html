@@ -8,8 +8,12 @@
 <div ng-init="obj={ a: 1, foo: 'bar' }">
 	<p>JSON without formatting</p>
 	<pre>{{ obj | json : 0 }}</pre>
+
 	<p>JSON with formatting</p>
 	<pre>{{ obj | json : 2 }}</pre>
+
+	<p>JSON with formatting</p>
+	<pre><code>{{ obj | json : 4 }}</code></pre>
 </div>
 
 <script src="../../bower_components/angular/angular.js"></script>

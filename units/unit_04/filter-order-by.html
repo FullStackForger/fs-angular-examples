@@ -6,22 +6,26 @@
 <body>
 
 <div ng-init="rebels = [
-    {name: 'Luke Skywalker', profession: 'Jedi', weapon: 'lightsaber', age: 19 },
-    {name: 'Ben Kenobi', profession: 'Jedi', weapon: 'lightsaber', age:  56},
-    {name: 'Han Solo', profession: 'smuggler', weapon: 'laser blaster', age: 32 },
-    {name: 'Chewbacca', profession: 'pilot', weapon: 'bowcaster' , age: 200},
-    ];">
+{name: 'Luke Skywalker', profession: 'Jedi', weapon: 'lightsaber', age: 19 },
+{name: 'Ben Kenobi', profession: 'Jedi', weapon: 'lightsaber', age:  56},
+{name: 'Han Solo', profession: 'smuggler', weapon: 'laser blaster', age: 32 },
+{name: 'Chewbacca', profession: 'pilot', weapon: 'bowcaster' , age: 200},
+];">
 
 
 	Rebellion members ordered by <code>name</code>:
 	<ul>
-		<li ng-repeat="rebel in rebels | orderBy: 'name'">{{ rebel.name }} (age: {{ rebel.age}}) is a {{ rebel.profession }} fighting with a {{ rebel.weapon }}.</li>
+		<li ng-repeat="rebel in rebels | orderBy: 'name'">
+			{{ rebel.name }} (age: {{ rebel.age}}) is a
+			{{ rebel.profession }} fighting with a {{ rebel.weapon }}.</li>
 	</ul>
 
 
 	Rebellion members ordered by <code>[profession, -age]</code>:
 	<ul>
-		<li ng-repeat="rebel in rebels | orderBy: ['profession', '-age']">{{ rebel.name }} (age: {{ rebel.age}}) is a {{ rebel.profession }} fighting with a {{ rebel.weapon }}.</li>
+		<li ng-repeat="rebel in rebels | orderBy: ['profession', '-age']">
+			{{ rebel.name }} (age: {{ rebel.age}}) is a
+			{{ rebel.profession }} fighting with a {{ rebel.weapon }}.</li>
 	</ul>
 
 </div>

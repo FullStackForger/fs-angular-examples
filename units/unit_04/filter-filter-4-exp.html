@@ -32,11 +32,14 @@
     {name: 'Wedge Antilles', profession: 'Pilot', weapon: 'x-wing', age: 26},
     {name: 'Lando Calrissian', profession: 'Gambler', weapon: 'laser blaster', age: 31},
     {name: 'Gial Ackbar', profession: 'Admiral', weapon: 'laser blaster', age: 63}
-    ]; selection='profession';">
+    ]; selection='weapon';">
 	<h1>The Rebellion database</h1>
-	<p>There are {{ rebels.length}} rebels in the database.</p>
 
-	Group filter by: {{selection}}
+	<p>There are {{ rebels.length}} rebels in the database.</p>
+	Group filter by
+	<input type="radio" name="r" ng-model="selection" value="profession" ng-checked="selection==='profession'">Profession <input type="radio" name="r" ng-model="selection" value="weapon"> Weaponry
+
+Group filter by: {{selection}}
 
 	<!-- it will have to be used with controller to read the group dynamically
 	<select ng-options="el as el for el in ['profession', 'name']" ng-model="selection">
@@ -46,7 +49,8 @@
 
 	<p><code>ng-option</code></p>
 	<p>Please select a rebel:
-		<select ng-model="query" ng-options="rebel.name group by rebel[selection] for rebel in rebels | orderBy: ['profession', 'name']" >
+		<select ng-model="query"
+		        ng-options="rebel.name group by rebel[selection] for rebel in rebels | orderBy: ['profession', 'name']" >
 			<option value="">Select a rebel</option>
 		</select>
 		<option ng-repeat="s in itemlist" value="{{s.value}}">{{s.name}}</option>
@@ -61,6 +65,7 @@
 	</p>
 
 	{{query}}
+
 	<table>
 		<thead>
 		<tr>

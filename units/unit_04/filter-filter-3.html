@@ -13,16 +13,21 @@
 ];">
 
 
-	<input>
+	<div>
+		Search:
+		<input type="text" ng-model="searchText[option]" ng-disabled="!option">
+	</div>
+
+	<div>
 		<input type="radio" name="r" ng-model="option" value="$"> Free text
 		<input type="radio" name="r" ng-model="option" value="name"> Name
 		<input type="radio" name="r" ng-model="option" value="weapon"> Weapon
 	</div>
-	<!--
+
 	<div>
 		<input type="button" ng-click="searchText = {}" value="reset" />
 	</div>
-	-->
+
 	<ul>
 		<li ng-repeat="rebel in rebels | filter: searchText">
 			{{ rebel.name }} (age: {{ rebel.age}})
