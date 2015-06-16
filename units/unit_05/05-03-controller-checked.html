@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script>
+		angular.module('myApp', []);
+
+		angular
+			.module('myApp')
+			.controller('MyController', MyController);
+
+		function MyController($scope) {
+			$scope.checked = true;
+			// additional logic
+		}
+	</script>
+</head>
+<body>
+<div ng-controller="MyController">
+	Checkbox with property on local <code>MyController</code> scope
+	<div>
+		<input type="checkbox" ng-checked="checked">
+		This should be checked
+	</div>
+</div>
+<br /><br />
+
+Checkbox with property on global scope
+<div>
+	<input type="checkbox" ng-checked="checked">
+	This should be checked
+</div>
+</body>
+</html>

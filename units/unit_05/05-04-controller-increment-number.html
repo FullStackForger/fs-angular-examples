@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular.module('myApp', []);
+
+angular
+	.module('myApp')
+	.controller('MyController', MyController);
+
+function MyController($scope) {
+	$scope.number = 0;
+	$scope.increment = function() {
+		$scope.number = $scope.number + 1;
+	};
+	$scope.decrement = function() {
+		$scope.number = $scope.number - 1;
+	};
+}
+</script>
+</head>
+<body>
+
+<div ng-controller="MyController">
+	<p>{{ number }}<p>
+	<p>
+		<button ng-click="increment()">Increment</button>
+		<button ng-click="decrement()">Decrement</button>
+	</p>
+</div>
+
+</body>
+</html>
