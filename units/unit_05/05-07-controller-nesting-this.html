@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<style>
+div { border: 1px solid grey; margin: 10px; padding: 10px; }
+</style>
+<script>
+angular.module('myApp', []);
+
+angular
+	.module('myApp')
+	.controller('FirstController', FirstController)
+	.controller('SecondController', SecondController);
+
+// changes:
+// - method parameter $scope has been removed from both methods
+// - using controllerAs (available form Angular 1.2) in HTML below
+//
+// interesting read:
+// http://toddmotto.com/digging-into-angulars-controller-as-syntax/
+
+function FirstController() {
+	this.rebel = 'Luke Skywalker';
+}
+
+function SecondController() {
+	this.rebel = 'Ben Kenobi';
+}
+
+</script>
+</head>
+<body>
+
+<div ng-controller="FirstController as fistCtrl">
+	<h4>First Controller</h4>
+	<p>rebel: {{fistCtrl.rebel}}</p>
+
+	<div ng-controller="SecondController as secondCtrl">
+		<h4>Second Controller</h4>
+		<p>second controller rebel: {{secondCtrl.rebel}}</p>
+		<p>first controller rebel: <b>{{fistCtrl.rebel}}</b></p>
+	</div>
+</div>
+
+</body>
+</html>

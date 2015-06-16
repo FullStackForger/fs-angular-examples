@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <script src="../../bower_components/angular/angular.js"></script>
+<style>
+div { border: 1px solid grey; margin: 10px; padding: 10px; }
+</style>
 <script>
 angular.module('myApp', []);
 
@@ -16,7 +19,7 @@ function FirstController($scope) {
 }
 
 function SecondController($scope) {
-	this.rebel = 'Ben Kenobi';
+	$scope.rebel = 'Ben Kenobi';
 }
 
 </script>
@@ -24,11 +27,14 @@ function SecondController($scope) {
 <body>
 
 <div ng-controller="FirstController">
-	<input type="text" ng-model="rebel" /> : {{rebel}}
-</div>
+	<h4>First Controller</h4>
+	<p>rebel: {{rebel}}</p>
 
-<div ng-controller="SecondController as secondCtrl">
-	<input type="text" ng-model="secondCtrl.rebel" /> : {{secondCtrl.rebel}}
+	<div ng-controller="SecondController">
+		<h4>Second Controller</h4>
+		<p>second controller rebel: {{rebel}}</p>
+		<p>first controller rebel: <b>????</b></p>
+	</div>
 </div>
 
 </body>
