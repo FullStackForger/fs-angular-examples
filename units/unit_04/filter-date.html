@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+
+<div ng-init="mydate = 1399648945000">
+	<p>{{mydate}} in human readable time is:</p>
+	<p>either: <b>{{mydate | date: 'medium'}}</b></p>
+	<p>or: <b>{{mydate | date: 'yyyy - MMMM - d  H:m:s (EEEE)'}}</b></p>
+</div>
+
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>

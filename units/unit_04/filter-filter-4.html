@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8">
+	<title>My first Angular app</title>
+	<style>
+		[ng\:cloak], [ng-cloak], .ng-cloak {
+			display: none !important;
+		}
+		table {
+			border: 1px solid gray;
+			width: 100%;
+		}
+		td {
+			padding: 10px;
+		}
+		.odd {
+			background-color: #eee;
+		}
+		.even {
+			background-color: #bbb;
+		}
+	</style>
+</head>
+<body ng-cloak>
+<input ng-init="rebels = [
+    {name: 'Luke Skywalker', profession: 'Jedi', weapon: 'lightsaber', age: 19 },
+    {name: 'Ben Kenobi', profession: 'Jedi', weapon: 'lightsaber', age:  56},
+    {name: 'Han Solo', profession: 'Smuggler', weapon: 'laser blaster', age: 32 },
+    {name: 'Chewbacca', profession: 'Pilot', weapon: 'bowcaster' , age: 200},
+    {name: 'Leia Organa', profession: 'Politician', weapon: 'laser blaster', age: 25},
+    {name: 'Wedge Antilles', profession: 'Pilot', weapon: 'x-wing', age: 26},
+    {name: 'Lando Calrissian', profession: 'Gambler', weapon: 'laser blaster', age: 31},
+    {name: 'Gial Ackbar', profession: 'Admiral', weapon: 'laser blaster', age: 63}
+    ]; selection='profession';">
+	<h1>The Rebellion database</h1>
+	<p>There are {{ rebels.length}} rebels in the database.</p>
+
+	Group filter by: {{selection}}
+
+	<p>Please select a rebel:
+		<select ng-model="query" ng-options="rebel.name group by rebel[selection] for rebel in rebels | orderBy: ['profession', 'name']" >
+			<option value="">Select a rebel</option>
+		</select>
+		<option ng-repeat="s in itemlist" value="{{s.value}}">{{s.name}}</option>
+	</p>
+	{{query}}
+	<table>
+		<thead>
+		<tr>
+			<th>Name</th><th>Profession</th><th>Weapon</th><th>Age</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="rebel in rebels | filter: query" ng-class="{even: $even, odd: $odd}">
+			<td>{{rebel.name}}</td><td>{{rebel.profession}}</td><td>{{rebel.weapon}}</td><td>{{rebel.age}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>

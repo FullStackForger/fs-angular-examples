@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div ng-init="mystring = 'Star Wars'">
+	<div>
+		<p>limitTo with a string</p>
+		<p>{{mystring}} after applying the filter:
+		<b>{{mystring | limitTo:4}}</b></p>
+	</div>
+</div>
+<br /><br />
+<div ng-init="myarray = [0,1,2,3,4,5]">
+	<div>
+		<p>limitTo with an array</p>
+		<p>{{myarray}} after applying the filter:
+		<b>{{myarray | limitTo:-2}}</b></p>
+	</div>
+</div>
+
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div ng-init="obj={ a: 1, foo: 'bar' }">
+	<p>JSON without formatting</p>
+	<pre>{{ obj | json : 0 }}</pre>
+	<p>JSON with formatting</p>
+	<pre>{{ obj | json : 2 }}</pre>
+</div>
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>

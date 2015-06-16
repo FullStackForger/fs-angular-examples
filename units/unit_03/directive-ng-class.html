@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="utf-8">
+
+<style>
+div > p { display: none; }
+.red { color: red; display: block; }
+.green { color: green; display: block; }
+</style>
+
+</head>
+<body>
+
+<div ng-init="luke = { name: 'Luke Skywalker', age: 19 }">
+	How old is Luke? <input type="number" ng-model="guess">
+	<p ng-class="{green: luke.age === guess}">Correct</p>
+	<p ng-class="{red: luke.age !== guess}">Incorrect</p>
+</div>
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>

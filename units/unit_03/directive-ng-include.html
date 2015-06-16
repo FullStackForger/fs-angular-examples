@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div ng-init="obj = { number :  10 }">
+	Template: templates/<input type="text" ng-model="template" />.html
+</div>
+
+<select ng-model="template"
+        ng-options="template for template in ['template_1', 'template_2']" ></select>
+
+<!-- <a ng-href="./templates/{{template}}.html">test</a> -->
+
+<div ng-include="'templates/' + template + '.html'">
+	This is template container.
+</div>
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>
