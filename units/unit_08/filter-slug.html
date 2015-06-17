@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="myApp"p>
+<head>
+<meta charset="utf-8">
+<style>
+	.unselectable {
+		user-select: none;
+		-o-user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+	}
+</style>
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.controller('Ctrl', function () {})
+	.filter('slug', slug);
+
+function slug() {
+	return function(string) {
+		if (string) {
+			return string.replace(/[^a-z0-9-]/g, '-');
+		}
+	}
+}
+</script>
+</head>
+<body ng-controller="Ctrl">
+	<p>Post title: <input ng-model="title" /></p>
+	<p>
+		Post title:
+		<input disabled="disabled" class="unselectable"
+		       ng-value="title | slug" />
+	</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="myApp"p>
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.controller('MyCtrl', function MyCtrl() {
+		this.timestamp = (new Date()).getTime();
+	})
+	.filter('dateSuffix', dateSuffix);
+
+function dateSuffix($filter) {
+	var suffixes = ['th', 'st', 'nd', 'rd'];
+	return function(input) {
+		if (input) {
+			var dtfilter = $filter('date')(input, 'dd MMMM yyyy @ H:m:s');
+			var day = parseInt(dtfilter.substr(0,2));
+			var relevantDigits = day % 10;
+			var suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
+
+			dtfilter = dtfilter.substring(2);
+			return day + suffix + dtfilter;
+		}
+	};
+}
+</script>
+</head>
+<body ng-controller="MyCtrl as myCtrl">
+	<b>{{ myCtrl.timestamp | dateSuffix }}</b>
+</body>
+</html>
