@@ -29,6 +29,7 @@ function FilmServiceProvider () {
 
 	function filmFactory ($http) {
 		this.$inject = ['$http'];
+
 		return {
 			getFilms: getFilms
 		};
