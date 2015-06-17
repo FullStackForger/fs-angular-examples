@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<style>
+div { border: 1px solid grey; margin: 10px; padding: 10px; }
+</style>
+<script>
+angular.module('myApp', []);
+
+angular
+	.module('myApp')
+	.controller('MyController', ['$scope', FirstController]);
+
+function MyController($scope) {
+	$scope.rebel = 'Luke Skywalker';
+}
+
+</script>
+</head>
+<body>
+
+<div ng-controller="MyController">
+	<p>rebel: {{rebel}}</p>
+</div>
+
+</body>
+</html>
