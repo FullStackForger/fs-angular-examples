@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="myApp"p>
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.controller('MyCtrl', function MyCtrl() {
+		this.str = '';
+		this.pre = '';
+		this.post = '';
+	})
+	.filter('prefix', prefix)
+	.filter('postfix', postfix);
+
+function prefix() {
+	return function(string, pre) { return string ? pre + string : null }
+}
+
+function postfix() {
+	return function(string, post) { return string ?  string + post : null }
+}
+
+</script>
+</head>
+<body ng-controller="MyCtrl as myCtrl">
+<div>
+	<input type="text" ng-model="myCtrl.pre"/> :
+	<input type="text" ng-model="myCtrl.str"/> :
+	<input type="text" ng-model="myCtrl.post"/>
+</div>
+
+<div>
+	concat expression: {{ myCtrl.pre + myCtrl.str + myCtrl.post }}
+</div>
+
+<div>
+	filter expression: {{ myCtrl.str | prefix : myCtrl.pre | postfix : myCtrl.post}}
+</div>
+</body>
+</html>
