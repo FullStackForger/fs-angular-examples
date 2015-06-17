@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.controller('FilmController', FilmController);
+
+FilmController.$inject = ['$http', '$scope'];
+
+function FilmController($http, $scope) {
+	$http
+		.get('/units/unit_06/api/films.json')
+		.then(function(data) {
+			$scope.films = data.data;
+		});
+}
+
+</script>
+</head>
+<body>
+<div ng-controller="FilmController">
+	<ul>
+		<li ng-repeat="film in films">
+			{{ film.title }}
+		</li>
+	</ul>
+</div>
+</body>
+</html>

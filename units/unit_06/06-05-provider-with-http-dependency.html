@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.controller('FilmController', FilmController)
+	// we are registering FilmService with 'provider' service
+	.provider('filmService', FilmServiceProvider)
+	// we can now set up global configuration
+	// note 1: config can be called before provider definition
+	// note 2: note we are injecting 'filmServiceProvider' not 'filmService'
+	.config(function (filmServiceProvider) {
+		this.$inject = ['filmServiceProvider'];
+		filmServiceProvider.setEndPoint('/units/unit_06/api/films.json');
+	});
+
+function FilmServiceProvider () {
+	var endPoint;
+
+	this.setEndPoint = setEndPoint;
+	this.$get = filmFactory;
+
+	function setEndPoint (url) {
+		endPoint = url;
+	};
+
+	function filmFactory ($http) {
+		this.$inject = ['$http'];
+		return {
+			getFilms: getFilms
+		};
+
+		function getFilms() {
+			return $http
+				.get(endPoint)
+				.then(complete)
+				.catch(failed);
+		}
+
+		function complete(response) {
+			return response.data;
+		}
+
+		function failed(error) {
+			return error.statusText;
+		}
+	}
+}
+
+function FilmController($scope, filmService) {
+	this.$inject = ['$scope', 'filmService'];
+
+	filmService.getFilms().then(function(data) {
+		$scope.films = data;
+	});
+}
+
+</script>
+</head>
+<body>
+<div ng-controller="FilmController">
+	<ul>
+		<li ng-repeat="film in films">
+			{{ film.title }}
+		</li>
+	</ul>
+</div>
+</body>
+</html>
