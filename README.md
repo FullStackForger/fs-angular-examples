@@ -7,6 +7,15 @@ Full documentation available at [bit.ly/angular-training](http://bit.ly/angular-
 ## Lab code
 Browse through `unit/unit_nn` folder for lab exercises code.
 
+## Units
+
+ - unit 1: javascript examples
+ - unit 2: angular bootstrap
+ - unit 3: directives
+ - unit 4: filters
+ - unit 5: controllers
+ - unit 6: service recipes
+ - unit 7: routing and modules
  
  
 ## Sources:
