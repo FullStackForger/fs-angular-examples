@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<style>
+.panel { margin: 10px; padding: 10px; border: 1px solid #787878;}
+</style>
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+(function () {
+	angular
+		.module('myApp', [])
+		.controller('EmitterController', EmitterController)
+		.directive('emitterPanel', emitterPanel);
+
+	function emitterPanel() {
+		return {
+			scope: {
+				// note: we are using 2-way data bindings to access object properties
+				// one way data binding will not allow that, @ will assign string
+				name : '@',
+				events : '=',
+				broadcast : '&',
+				emit : '&',
+
+			},
+			templateUrl : 'emiter-panel.tpl.html',
+			transclude: true
+		}
+	}
+
+	function EmitterController($scope) {
+		var self = this;
+
+		self.events = {
+			recivedFromChildren : 0,
+			recivedFromParents : 0,
+			sentToChildren : 0,
+			sentToParents : 0
+		};
+
+
+		this.$inject = ['$scope'];
+
+		$scope.$on('ParentNotification', function (event, data) {
+			if (event['currentScope'] == event['targetScope']) return;
+			self.events.recivedFromChildren += 1;
+		});
+
+		$scope.$on('ChildNotification', function (event, data) {
+			if (event['currentScope'] == event['targetScope']) return;
+			self.events.recivedFromParents += 1;
+		});
+
+		self.notifyParents = function () {
+			$scope.$emit('ParentNotification', 'I am not hungry!');
+			self.events.sentToParents += 1;
+		};
+
+		self.notifyChildren = function () {
+			$scope.$broadcast('ChildNotification', 'Dinner time!');
+			self.events.sentToChildren += 1;
+		};
+
+
+	}
+})();
+</script>
+</head>
+<body ng-controller="EmitterController">
+
+<div ng-controller="EmitterController as grandParentCtrl">
+	<emitter-panel  events="grandParentCtrl.events"
+	                name="Granpa John"
+	                broadcast="grandParentCtrl.notifyChildren()"
+	                emit="grandParentCtrl.notifyParents()">
+
+		<div ng-controller="EmitterController as parentCtrl">
+			<emitter-panel  events="parentCtrl.events"
+			                name="Mother Juliet"
+			                broadcast="parentCtrl.notifyChildren()"
+			                emit="parentCtrl.notifyParents()">
+
+				<div ng-controller="EmitterController as childCtrl">
+					<emitter-panel  events="childCtrl.events"
+					                name="Little Tom"
+					                broadcast="childCtrl.notifyChildren()"
+					                emit="childCtrl.notifyParents()">
+
+					</emitter-panel>
+				</div>
+
+			</emitter-panel>
+		</div>
+
+	</emitter-panel>
+</div>
+
+</body>
+</html>

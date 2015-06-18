@@ -1,0 +1,30 @@
+<div class="panel">
+	<h4>{{name}}</h4>
+	<table>
+		<tr>
+			<td>
+				received from children: {{events.recivedFromChildren}}
+			<td>
+				sent to children: {{events.sentToChildren}}
+			</td>
+			<td>
+				<button ng-click="broadcast()">tell kids</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				received form parents: {{events.recivedFromParents}}
+			<td>
+				sent to parents: {{events.sentToParents}}
+			</td>
+			<td>
+				<button ng-click="emit()">tell parents</button>
+			</td>
+		</tr>
+	</table>
+
+	<div>
+		<p>Children:</p>
+		<div ng-transclude></div>
+	</div>
+</div>
