@@ -26,9 +26,10 @@ angular
 		this.$inject = ['$rootScope', '$route', '$location', 'historyStore'];
 
 		$rootScope.$on('$routeChangeSuccess', function () {
+
 			console.log($location.path());
 
-			historyStore.saveRoute($location.path())
+			historyStore.saveRoute($location.path());
 			$rootScope.$emit('routeRegistered');
 
 		});
