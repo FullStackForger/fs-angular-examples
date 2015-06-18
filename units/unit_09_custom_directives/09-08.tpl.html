@@ -1,0 +1,6 @@
+<div class="my-directive">
+	<h4>Members: {{getTotal()}}, Limit <input ng-model="limitNumber"></h4>
+	<div ng-repeat="person in getData({limit: limitNumber})">
+		<div>{{person.name}} - {{person.title}}</div>
+	</div>
+</div>

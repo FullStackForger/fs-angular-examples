@@ -6,13 +6,13 @@
 <script>
 
 angular.module('myApp', [])
-	.controller('1stPersonController', ['$scope', function($scope) {
+	.controller('FirstController', ['$scope', function($scope) {
 		$scope.person = {
 			name: 'John Smith',
 			title: 'Developer'
 		};
 	}])
-	.controller('2ndPersonController', ['$scope', function($scope) {
+	.controller('SecondController', ['$scope', function($scope) {
 		$scope.person = {
 			name: 'Tom Black',
 			title: 'Designer'
@@ -28,11 +28,11 @@ angular.module('myApp', [])
 </head>
 <body>
 
-	<div ng-controller="1stPersonController">
+	<div ng-controller="FirstController">
 		<personal-details></personal-details>
 	</div>
 
-	<div ng-controller="2ndPersonController">
+	<div ng-controller="SecondController">
 		<personal-details></personal-details>
 	</div>
 
