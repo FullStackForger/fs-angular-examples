@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+
+angular.module('myApp', [])
+	.controller('1stPersonController', ['$scope', function($scope) {
+		$scope.person = {
+			name: 'John Smith',
+			title: 'Developer'
+		};
+	}])
+	.controller('2ndPersonController', ['$scope', function($scope) {
+		$scope.person = {
+			name: 'Tom Black',
+			title: 'Designer'
+		};
+	}])
+	.directive('personalDetails', function() {
+		return {
+			template: 'person: <b>{{person.name}}</b> title: <b>{{person.title}}</b>'
+		};
+	});
+
+</script>
+</head>
+<body>
+
+	<div ng-controller="1stPersonController">
+		<personal-details></personal-details>
+	</div>
+
+	<div ng-controller="2ndPersonController">
+		<personal-details></personal-details>
+	</div>
+
+</body>
+</html>

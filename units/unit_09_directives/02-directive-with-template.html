@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+
+angular.module('myApp', [])
+	.controller('Controller', ['$scope', function($scope) {
+		$scope.person = {
+			name: 'John Smith',
+			title: 'Developer'
+		};
+	}])
+	.directive('personalDetails', function() {
+		return {
+			//restrict: 'AE', // default behaviour
+			templateUrl: '02.tpl.html'
+		};
+	});
+
+</script>
+</head>
+<body>
+	<div ng-controller="Controller">
+		<personal-details></personal-details>
+	</div>
+
+	<div ng-controller="Controller">
+		<div personal-details></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+
+angular.module('myApp', [])
+	.controller('PeopleController', ['$scope', function($scope) {
+		$scope.people = [
+			{ name: 'John Smith', title: 'Developer'},
+			{ name: 'Tom Black', title: 'Designer' },
+			{ name: 'John Smith2', title: 'Developer'},
+			{ name: 'Tom Black2', title: 'Designer' },
+			{ name: 'John Smith3', title: 'Developer'},
+			{ name: 'Tom Black3', title: 'Designer' }
+	]}])
+	.directive('personalDetails', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				person: '=data'
+			},
+			template: '<div>person: <b>{{person.name}}</b> title: <b>{{person.title}}</b></div>'
+		};
+	});
+
+</script>
+</head>
+<body>
+	<h4>Displayed with angular expression</h4>
+	<div ng-controller="PeopleController">
+		{{people[0].name}} - {{people[0].title}}<br />
+		{{people[1].name}} - {{people[1].title}}
+	</div>
+
+	<h4>Displayed with directive with passed array element</h4>
+	<div ng-controller="PeopleController">
+		<personal-details data="people[0]"></personal-details>
+		<personal-details data="people[1]"></personal-details>
+	</div>
+
+
+	<h4>Displayed with directive used with ng-repeat</h4>
+	<div ng-controller="PeopleController">
+		<personal-details data="person" ng-repeat="person in people"></personal-details>
+	</div>
+
+</body>
+</html>
