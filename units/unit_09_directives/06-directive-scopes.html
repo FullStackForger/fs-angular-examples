@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular.module('myApp', [])
+	.controller('PeopleController', ['$scope', function($scope) {
+		$scope.label = "People";
+	}])
+	.directive('isolatedInfo', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				title: '@',
+			},
+			template: '<div><input ng-model="title" /></div>'
+		};
+	})
+	.directive('bindableInfo', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				title: '=',
+			},
+			template: '<div><input ng-model="title" /></div>'
+		};
+	});
+
+</script>
+</head>
+<body>
+
+
+<h4>Displayed with directive used with ng-repeat</h4>
+<div ng-controller="PeopleController">
+	<input ng-model="label" />
+
+	<h4>isolated @</h4>
+	<isolated-info title="{{label}}"></isolated-info>
+
+	<h4>binded =</h4>
+	<bindable-info title="label"></bindable-info>
+
+</div>
+
+</body>
+</html>

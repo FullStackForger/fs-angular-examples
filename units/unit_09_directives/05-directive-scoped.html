@@ -14,14 +14,19 @@ angular.module('myApp', [])
 			{ name: 'Tom Black2', title: 'Designer' },
 			{ name: 'John Smith3', title: 'Developer'},
 			{ name: 'Tom Black3', title: 'Designer' }
-	]}])
+		];
+		$scope.title = "People";
+
+		}])
 	.directive('personalDetails', function() {
 		return {
 			restrict: 'E',
 			scope: {
-				person: '=data'
+				person: '=data',
+				label: '=label'
 			},
-			template: '<div>person: <b>{{person.name}}</b> title: <b>{{person.title}}</b></div>'
+			template: '<div> <b>{{label}}</b><br />' +
+			'person: <b>{{person.name}}</b> title: <b>{{person.title}}</b></div>'
 		};
 	});
 
@@ -36,14 +41,14 @@ angular.module('myApp', [])
 
 	<h4>Displayed with directive with passed array element</h4>
 	<div ng-controller="PeopleController">
-		<personal-details data="people[0]"></personal-details>
-		<personal-details data="people[1]"></personal-details>
+		<personal-details data="people[0]" label="'First Person'"></personal-details>
+		<personal-details data="people[1]" label="'Second Person'"></personal-details>
 	</div>
 
 
 	<h4>Displayed with directive used with ng-repeat</h4>
 	<div ng-controller="PeopleController">
-		<personal-details data="person" ng-repeat="person in people"></personal-details>
+		<personal-details data="person" label="title" ng-repeat="person in people"></personal-details>
 	</div>
 
 </body>
