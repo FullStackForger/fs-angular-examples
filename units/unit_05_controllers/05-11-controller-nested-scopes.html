@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<style>div { border: 1px solid gray; margin: 10px; padding: 10px; } </style>
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+
+angular
+	.module('myApp', [])
+	.controller("MyController1", function ($scope) {
+		$scope.name = "Controller 1";
+		this.title = "my title";
+	})
+	.controller("MyController2",  function ($scope) {
+		$scope.name = "Controller 2";
+	})
+	.controller("MyController3",  function ($scope) {
+
+	});
+
+</script>
+</head>
+<body>
+
+<div ng-controller="MyController1 as myCtrl1">
+	{{name}} - {{myCtrl1.title}}
+
+	<div ng-controller="MyController2">
+		{{name}}
+
+		<div ng-controller="MyController3">
+			{{name}}
+
+				<p>I want to dispatch event from this scope</p>
+				<p>I can dispatch event ot parent scopes with <code>$emit</code></p>
+				<p>I can dispatch event ot child scopes with <code>$broadcast</code></p>
+			
+
+			<div ng-controller="MyController3">
+				{{name}}
+
+				<div ng-controller="MyController3">
+					{{name}} - {{myCtrl1.title}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
