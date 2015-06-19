@@ -39,18 +39,7 @@
 			sentToParents : 0
 		};
 
-
 		this.$inject = ['$scope'];
-
-		$scope.$on('ParentNotification', function (event, data) {
-			if (event['currentScope'] == event['targetScope']) return;
-			self.events.recivedFromChildren += 1;
-		});
-
-		$scope.$on('ChildNotification', function (event, data) {
-			if (event['currentScope'] == event['targetScope']) return;
-			self.events.recivedFromParents += 1;
-		});
 
 		self.notifyParents = function () {
 			$scope.$emit('ParentNotification', 'I am not hungry!');
@@ -62,14 +51,25 @@
 			self.events.sentToChildren += 1;
 		};
 
+		$scope.$on('ParentNotification', function (event, data) {
+			if (event['currentScope'] == event['targetScope']) return;
+			self.events.recivedFromChildren += 1;
+		});
+
+		$scope.$on('ChildNotification', function (event, data) {
+			if (event['currentScope'] == event['targetScope']) return;
+			self.events.recivedFromParents += 1;
+		});
+
 
 	}
 })();
 </script>
 </head>
-<body ng-controller="EmitterController">
+<body>
 
 <div ng-controller="EmitterController as grandParentCtrl">
+
 	<emitter-panel  events="grandParentCtrl.events"
 	                name="Granpa John"
 	                broadcast="grandParentCtrl.notifyChildren()"
