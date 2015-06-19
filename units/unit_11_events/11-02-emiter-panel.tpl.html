@@ -1,0 +1,21 @@
+<div class="panel">
+	<h4>Caputerd: {{name}}</h4>
+
+	<table>
+		<tr>
+			<td>
+				received: {{events.received}}
+			<td>
+				sent: {{events.sent}}
+			</td>
+			<td>
+				<button ng-click="dispatch()">emit from $rootScope</button>
+			</td>
+		</tr>
+	</table>
+
+	<div>
+		<p>Children:</p>
+		<div ng-transclude></div>
+	</div>
+</div>

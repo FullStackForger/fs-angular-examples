@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<style>
+.panel { margin: 10px; padding: 10px; border: 1px solid #787878;}
+</style>
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+(function () {
+	angular
+		.module('myApp', [])
+		.controller('EmitterController', EmitterController)
+		.directive('emitterPanel', emitterPanel);
+
+	function emitterPanel() {
+		return {
+			scope: {
+				// note: we are using 2-way data bindings to access object properties
+				// one way data binding will not allow that, @ will assign string
+				name : '@',
+				events : '=',
+				dispatch : '&'
+
+			},
+			templateUrl : '11-02-emiter-panel.tpl.html',
+			transclude: true
+		}
+	}
+
+	function EmitterController($rootScope) {
+		var self = this;
+
+		self.events = {
+			received : 0,
+			sent : 0
+		};
+
+		this.$inject = ['$rootScope'];
+
+		self.dispatchEvent = function () {
+			$rootScope.$emit('NotificationEvent', 'warning warning');
+			self.events.sent += 1;
+		};
+
+		$rootScope.$on('NotificationEvent', function (event, data) {
+			self.events.received += 1;
+		});
+
+
+	}
+})();
+</script>
+</head>
+<body>
+
+<div ng-controller="EmitterController as grandParentCtrl">
+
+	<emitter-panel  events="grandParentCtrl.events"
+	                name="Granpa John"
+					dispatch="grandParentCtrl.dispatchEvent()">
+
+		<div ng-controller="EmitterController as parentCtrl">
+			<emitter-panel  events="parentCtrl.events"
+			                name="Mother Juliet"
+			                dispatch="parentCtrl.dispatchEvent()">
+
+				<div ng-controller="EmitterController as childCtrl">
+					<emitter-panel  events="childCtrl.events"
+					                name="Little Tom"
+					                dispatch="childCtrl.dispatchEvent()">
+
+					</emitter-panel>
+				</div>
+
+			</emitter-panel>
+		</div>
+
+		<div ng-controller="EmitterController as childCtrl">
+			<emitter-panel  events="childCtrl.events"
+			                name="Little Tom"
+			                dispatch="childCtrl.dispatchEvent()">
+
+			</emitter-panel>
+		</div>
+
+		<div ng-controller="EmitterController as childCtrl">
+			<emitter-panel  events="childCtrl.events"
+			                name="Little Tom"
+			                dispatch="childCtrl.dispatchEvent()">
+
+			</emitter-panel>
+		</div>
+
+	</emitter-panel>
+</div>
+
+</body>
+</html>
