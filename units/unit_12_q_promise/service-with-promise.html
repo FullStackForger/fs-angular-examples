@@ -1,10 +1,75 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
 <head>
 <meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+angular
+	.module('myApp', [])
+	.factory('fetchService', fetchService)
+	.controller('MyController', MyController);
+
+
+function fetchService ($timeout, $q) {
+
+	return {
+		getDataCb : getDataCb,
+		getDataPr : getDataPr
+	};
+
+	function getDataCb(callback) {
+		$timeout(function () {
+			callback(['cb1', 'cb2', 'cb3', 'cb4']);
+		}, 500);
+	}
+
+	function getDataPr() {
+		return $q(function( resolve, reject ) {
+			$timeout(function () {
+				resolve(['p1', 'p2', 'p3', 'p4']);
+			}, 500);
+		});
+	}
+}
+
+function MyController ($scope, fetchService) {
+	this.$inject = ['$scope', 'fetchService'];
+	this.name  = "my controller";
+	this.model;
+
+	var self = this;
+
+	this.getDataWithCallback = function () {
+		fetchService.getDataCb(function (data) {
+			self.model = data;
+		});
+	};
+
+	this.getDataWithQPromise = function () {
+		fetchService
+			.getDataPr()
+			.then(onSuccess);
+
+		function onSuccess (data) {
+			self.model = data;
+		}
+	}
+}
+
+</script>
 </head>
 <body>
-<p>{{'Angular' + ' ' + 'Bootstrap'}}</p>
-<script src="../../bower_components/angular/angular.js"></script>
+	<div ng-controller="MyController as myCtrl">
+		<div>
+			{{myCtrl.model | json}}
+		</div>
+		<div>
+			<button ng-click="myCtrl.getDataWithCallback()">get data with callback</button>
+			<button ng-click="myCtrl.getDataWithQPromise()">get data with $Q promise</button>
+		</div>
+		<ul>
+			<li ng-repeat="el in this.model">{{el}}</li>
+		</ul>
+	</div>
 </body>
 </html>
