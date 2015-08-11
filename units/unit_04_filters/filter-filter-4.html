@@ -23,7 +23,7 @@
 	</style>
 </head>
 <body ng-cloak>
-<input ng-init="rebels = [
+<div ng-init="rebels = [
     {name: 'Luke Skywalker', profession: 'Jedi', weapon: 'lightsaber', age: 19 },
     {name: 'Ben Kenobi', profession: 'Jedi', weapon: 'lightsaber', age:  56},
     {name: 'Han Solo', profession: 'Smuggler', weapon: 'laser blaster', age: 32 },
@@ -32,7 +32,7 @@
     {name: 'Wedge Antilles', profession: 'Pilot', weapon: 'x-wing', age: 26},
     {name: 'Lando Calrissian', profession: 'Gambler', weapon: 'laser blaster', age: 31},
     {name: 'Gial Ackbar', profession: 'Admiral', weapon: 'laser blaster', age: 63}
-    ]; selection='profession';">
+    ]; selection='weapon';">
 	<h1>The Rebellion database</h1>
 	<p>There are {{ rebels.length}} rebels in the database.</p>
 
@@ -43,7 +43,6 @@
 		        ng-options="rebel.name group by rebel[selection] for rebel in rebels | orderBy: ['profession', 'name']" >
 			<option value="">Select a rebel</option>
 		</select>
-		<option ng-repeat="s in itemlist" value="{{s.value}}">{{s.name}}</option>
 	</p>
 
 	{{query}}
@@ -54,7 +53,8 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr ng-repeat="rebel in rebels | filter: query" ng-class="{even: $even, odd: $odd}">
+		<tr ng-repeat="rebel in rebels | filter: query"
+		    ng-class="{even: $even, odd: $odd}">
 			<td>{{rebel.name}}</td><td>{{rebel.profession}}</td><td>{{rebel.weapon}}</td><td>{{rebel.age}}</td>
 		</tr>
 		</tbody>

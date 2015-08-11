@@ -8,6 +8,7 @@
 
 <div ng-init="mydate = 1399648945000">
 	<p>{{mydate}} in human readable time is:</p>
+	<p>either: <b>{{mydate | date: 'short'}}</b></p>
 	<p>either: <b>{{mydate | date: 'medium'}}</b></p>
 	<p>or: <b>{{mydate | date: 'yyyy - MMMM - d  H:m:s (EEEE)'}}</b></p>
 </div>
