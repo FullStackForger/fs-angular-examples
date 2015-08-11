@@ -18,6 +18,7 @@ Array.prototype.contains = function (element) {
 <body>
 
 <div ng-init="arr = [1, 2, 3]">
+	<div><p>{{arr}}</p></div>
 	<div>
 		Your number: <input type="number" ng-model="yourNumber">
 	</div>
@@ -26,9 +27,6 @@ Array.prototype.contains = function (element) {
 		Array
 		<span ng-show="arr.contains(yourNumber)">DOES HAVE IT</span>
 		<span ng-hide="arr.contains(yourNumber)">DOESN't HAVE IT</span>
-	</div>
-	<div>
-		{{arr.contains(yourNumber)}}
 	</div>
 </div>
 

@@ -13,14 +13,22 @@
 ];"></div>
 
 <div>
-	<select ng-model="selectedRebel" ng-options="rebel as rebel.name for rebel in rebels"></select>
-	<pre>{{selectedRebel | json}}</pre>
+	<select ng-model="selectedRebel1"
+	        ng-options="rebel as rebel.name for rebel in rebels">
+
+		<option value="" selected="selected">Select the rebel</option>
+	</select>
+	<pre>{{selectedRebel1 | json}}</pre>
 </div>
 
-
 <div>
-	<select ng-model="selectedRebel" ng-options="rebel.id as rebel.name for rebel in rebels"></select>
-	<pre>{{selectedRebel | json}}</pre>
+	<select ng-model="selectedRebel2"
+	        ng-options="rebel.id as rebel.name for rebel in rebels">
+
+		<option value="" selected="selected"
+		        ng-hide="selectedRebel2">Select the rebel</option>
+	</select>
+	<pre>{{selectedRebel2}}</pre>
 </div>
 
 <script src="../../bower_components/angular/angular.js"></script>
