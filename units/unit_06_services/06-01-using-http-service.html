@@ -12,7 +12,7 @@ FilmController.$inject = ['$http', '$scope'];
 
 function FilmController($http, $scope) {
 	$http
-		.get('/units/unit_06/api/films.json')
+		.get('./api/films.json')
 		.then(function(data) {
 			$scope.films = data.data;
 		});
