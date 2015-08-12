@@ -3,7 +3,7 @@
 ## Training documentation
 
 Full documentation available at [bit.ly/angular-training](http://bit.ly/angular-training)
-Presentations available at [http://bit.ly/1Whzxv0][http://bit.ly/1Whzxv0]
+Presentations available at [http://bit.ly/1MjqtB5][http://bit.ly/1MjqtB5]
 
 ## Lab code
 Browse through `unit/unit_nn` folder for lab exercises code.
