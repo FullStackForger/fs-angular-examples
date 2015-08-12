@@ -9,7 +9,6 @@ console.log(myObject.foo);
 
 // function factory pattern
 function myObjectFactory () {
-	this.foo = "something";
 	return {
 		foo: "bar"
 	};
