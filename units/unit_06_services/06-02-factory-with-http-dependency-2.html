@@ -34,11 +34,13 @@ function filmFactory($http) {
 }
 
 // we are injecting FilmService
-function FilmController($scope, filmService) {
-	this.$inject = ['$scope', 'filmService'];
+function FilmController($scope, filmService, $timeout) {
+	this.$inject = ['$scope', 'filmService', '$timeout'];
 
 	filmService.getFilms().then(function(data) {
-		$scope.films = data;
+		$timeout(function () {
+			$scope.films = data;
+		}, 2000);
 	});
 }
 

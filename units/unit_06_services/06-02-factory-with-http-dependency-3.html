@@ -38,7 +38,10 @@ function FilmController($scope, filmService) {
 	this.$inject = ['$scope', 'filmService'];
 
 	filmService.getFilms().then(function(data) {
-		$scope.films = data;
+		setTimeout(function () {
+			$scope.films = data;
+			$scope.$apply();
+		}, 2000);
 	});
 }
 
