@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<style>
+		.highlighted { background-color: lightblue; }
+	</style>
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script>
+		angular.module("myApp", []);
+
+		angular
+			.module("myApp")
+			.controller('MyCtrl', MyCtrl)
+			.directive('highlightedBox', highlightedBox);
+
+
+		function MyCtrl() {
+			this.names = ['Mark', 'Tamas', 'Simon'];
+		}
+
+		function highlightedBox() {
+			return {
+				link: link,
+				template: '<span ng-bind="name"></span>',
+				scope: {
+					name: "="
+				}
+			};
+
+			function link(scope, element, attrs) {
+
+				element.on('mouseover', function (event) {
+					element.addClass('highlighted');
+				});
+
+				element.on('mouseout', function (event) {
+					element.removeClass('highlighted');
+				});
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+	<div ng-controller="MyCtrl as myCtrl">
+		<ul>
+			<li ng-repeat="name in myCtrl.names" highlighted-box name="name"></li>
+		</ul>
+	</div>
+</body>
+</html>
