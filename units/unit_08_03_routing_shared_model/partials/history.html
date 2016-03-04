@@ -1,11 +1,11 @@
-<h4>history</h4>
+<h3>Browsing history</h3>
 
 <!-- from module: unit_07_03_Store -->
 <div ng-controller="HistoryRegistrationController"></div>
 
 <!-- FROM module: unit_07_03_Controllers -->
 <div ng-controller="HistoryController as historyCtrl">
-	<h4>{{historyCtrl.label}}</h4>
+	<h4><code>historyCtrl.label</code>: {{historyCtrl.label}}</h4>
 	<div ng-repeat="uri in historyCtrl.data track by $index">
 		<a ng-href="#{{uri}}">{{uri}}</a>
 	</div>

@@ -1,3 +1,5 @@
-<h2>{{title}}</h2>
-<p>This page id is: <b>{{paramPageCtrl.pageId}}</b></p>
-<div ng-include="'partials/param-page/' + paramPageCtrl.pageId + '.html'"></div>
+<h2>{{page.title}}</h2>
+<p>This page id is: <b>{{page.pageId}}</b></p>
+<div style="border: 1px solid gray; padding: 10px; margin: 10px">
+	<div ng-include="'partials/param-page/' + page.pageId + '.html'"></div>
+</div>

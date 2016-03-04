@@ -1,12 +1,23 @@
-angular
-	.module('unit_07_03_Controllers', ['unit_07_03_Store'])
-	.controller('MainController', function () {
+(function () {
+	"use strict";
+
+	angular
+		.module('unit_07_03_Controllers', ['unit_07_03_Store'])
+		.controller('MainController', MainController)
+		.controller('ParamPageController', ParamPageController)
+		.controller('HistoryController', HistoryController);
+
+	function MainController() {
 		this.title = 'Main Page';
-	})
-	.controller('ParamPageController', function ($routeParams) {
+	}
+
+	function ParamPageController($routeParams) {
+		this.$inject = ['$routeParam']
+		this.title = 'Param Page';
 		this.pageId = $routeParams.pageId;
-	})
-	.controller('HistoryController', function ($rootScope, historyStore) {
+	}
+
+	function HistoryController($rootScope, historyStore) {
 		this.$inject = ['$rootScope', 'historyStore'];
 		this.label = "Route History";
 
@@ -14,4 +25,5 @@ angular
 		$rootScope.$on('routeRegistered', function () {
 			self.data = historyStore.getHistory();
 		})
-	});
+	}
+})()
