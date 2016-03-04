@@ -1,26 +1,28 @@
 <!doctype html>
-<html lang="en" ng-app="myApp"p>
+<html lang="en" ng-app="myApp">
 <head>
-<meta charset="utf-8">
-<script src="../../bower_components/angular/angular.js"></script>
-<script>
-angular
-	.module('myApp', [])
-	.controller('MyCtrl', function MyCtrl() {
-		this.text = "Angular Training"
-	})
-	.filter('reverse', reverse);
+	<meta charset="utf-8">
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script>
+		angular
+				.module('myApp', [])
+				.controller('MyCtrl', function MyCtrl(reverseFilter) {
+					this.text = "Angular Training"
+					this.reversedText = reverseFilter(this.text)
+				})
+				.filter('reverse', reverse);
 
-function reverse() {
-	return function(string) {
-		if (string) {
-			return string.split('').reverse().join('');
+		function reverse() {
+			return function(string) {
+				if (string) {
+					return string.split('').reverse().join('');
+				}
+			}
 		}
-	}
-}
-</script>
+	</script>
 </head>
 <body ng-controller="MyCtrl as myCtrl">
-	<b>{{ myCtrl.text }}</b> in reverse is: <b> {{ myCtrl.text | reverse }} </b>
+<p><b>{{ myCtrl.text }}</b> in reverse is: <b> {{ myCtrl.text | reverse }} </b> with html filter</p>
+<p><b>{{ myCtrl.text }}</b> in reverse is: <b> {{ myCtrl.reversedText }} </b> with controller filter</p>
 </body>
 </html>
