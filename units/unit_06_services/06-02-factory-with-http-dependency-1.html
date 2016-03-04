@@ -8,38 +8,28 @@ angular
 	.module('myApp', [])
 	.controller('FilmController', FilmController)
 	.factory('filmService', filmFactory);
-	//note we are creating a service with 'factory' recipe
 
+//note we are creating a service with 'factory' recipe
 function filmFactory($http) {
-	this.$inject = ['$http'];
-
 	return {
 		getFilms: getFilms
 	};
 
 	function getFilms () {
-		return $http
-			.get('./api/films.json')
-			.then(complete)
-			.catch(failed);
-	}
-
-	function complete(response) {
-		return response.data;
-	}
-
-	function failed(error) {
-		return error.statusText;
+		return $http.get('./api/films.json')
 	}
 }
 
 // we are injecting FilmService
 function FilmController($scope, filmService) {
-	this.$inject = ['$scope', 'filmService'];
-
-	filmService.getFilms().then(function(data) {
-		$scope.films = data;
-	});
+	filmService
+		.getFilms()
+		.then(function(response) {
+			$scope.films = response.data;
+		})
+		.catch(function(error) {
+			$scope.error = error.statusText;
+		})
 }
 
 </script>
@@ -47,6 +37,7 @@ function FilmController($scope, filmService) {
 <body>
 <div ng-controller="FilmController">
 	<ul>
+		{{error}}
 		<li ng-repeat="film in films">
 			{{ film.title }}
 		</li>

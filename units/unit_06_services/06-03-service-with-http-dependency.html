@@ -8,34 +8,21 @@ angular
 	.module('myApp', [])
 	.controller('FilmController', FilmController)
 	.service('filmService', FilmService);
-	//note we are creating a service with 'service' recipe
 
+//note we are creating a service with 'service' recipe
 function FilmService($http) {
 	this.$inject = ['$http'];
 
-	this.getFilms = getFilms;
-
-	function getFilms() {
-		return $http
-			.get('/units/unit_06/api/films.json')
-			.then(complete)
-			.catch(failed);
-	}
-
-	function complete(response) {
-		return response.data;
-	}
-
-	function failed(error) {
-		return error.statusText;
+	this.getFilms = function () {
+		return $http.get('./api/films.json')
 	}
 }
 
 function FilmController($scope, filmService) {
 	this.$inject = ['$scope', 'filmService'];
 
-	filmService.getFilms().then(function(data) {
-		$scope.films = data;
+	filmService.getFilms().then(function(response) {
+		$scope.films = response.data;
 	});
 }
 

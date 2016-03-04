@@ -13,8 +13,7 @@ angular
 	// note 1: config can be called before provider definition
 	// note 2: note we are injecting 'filmServiceProvider' not 'filmService'
 	.config(function (filmServiceProvider) {
-		this.$inject = ['filmServiceProvider'];
-		filmServiceProvider.setEndPoint('/units/unit_06/api/films.json');
+		filmServiceProvider.setEndPoint('/units/unit_06_services/api/films.json');
 	});
 
 function FilmServiceProvider () {
@@ -25,37 +24,23 @@ function FilmServiceProvider () {
 
 	function setEndPoint (url) {
 		endPoint = url;
-	};
+	}
 
 	function filmFactory ($http) {
-		this.$inject = ['$http'];
 
 		return {
 			getFilms: getFilms
 		};
 
 		function getFilms() {
-			return $http
-				.get(endPoint)
-				.then(complete)
-				.catch(failed);
-		}
-
-		function complete(response) {
-			return response.data;
-		}
-
-		function failed(error) {
-			return error.statusText;
+			return $http.get(endPoint)
 		}
 	}
 }
 
 function FilmController($scope, filmService) {
-	this.$inject = ['$scope', 'filmService'];
-
-	filmService.getFilms().then(function(data) {
-		$scope.films = data;
+	filmService.getFilms().then(function(response) {
+		$scope.films = response.data;
 	});
 }
 

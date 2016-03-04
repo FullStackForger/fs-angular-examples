@@ -8,8 +8,8 @@ angular
 	.module('myApp', [])
 	.controller('FilmController', FilmController)
 	.factory('filmService', filmFactory);
-	//note we are creating a service with 'factory' recipe
 
+//note we are creating a service with 'factory' recipe
 function filmFactory($http) {
 	this.$inject = ['$http'];
 
@@ -20,16 +20,6 @@ function filmFactory($http) {
 	function getFilms () {
 		return $http
 			.get('./api/films.json')
-			.then(complete)
-			.catch(failed);
-	}
-
-	function complete(response) {
-		return response.data;
-	}
-
-	function failed(error) {
-		return error.statusText;
 	}
 }
 
@@ -37,9 +27,9 @@ function filmFactory($http) {
 function FilmController($scope, filmService) {
 	this.$inject = ['$scope', 'filmService'];
 
-	filmService.getFilms().then(function(data) {
+	filmService.getFilms().then(function(response) {
 		setTimeout(function () {
-			$scope.films = data;
+			$scope.films = response.data;
 			$scope.$apply();
 		}, 2000);
 	});
