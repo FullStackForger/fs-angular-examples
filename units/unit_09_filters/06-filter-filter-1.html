@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+(function() {
+	angular
+			.module('myApp', [])
+			.controller('FilterController', FilterController);
+
+	// inject filter directly
+	function FilterController(filterFilter) {
+		this.array = [
+			{name: 'Tobias'},
+			{name: 'Jeff'},
+			{name: 'Brian'},
+			{name: 'Igor'},
+			{name: 'James'},
+			{name: 'Brad'}
+		];
+		this.filteredArray = filterFilter(this.array, {name: 'as'});
+	}
+})()
+</script>
+</head>
+<body>
+<div ng-controller="FilterController as ctrl">
+	<div>
+		All entries:
+		<span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
+	</div>
+	<div>
+		Entries that contain an "as":
+		<span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
+	</div>
+</div>
+</body>
+</html>
