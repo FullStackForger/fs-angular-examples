@@ -1,27 +1,35 @@
 angular
 	.module('unit_07_02_Controllers', [])
-	.controller('MainController', function () {
-		this.title = 'Main Page';
-	})
-	.controller('DetailsController', function ($http) {
-		var self = this;
+	.controller('MainController', MainController)
+	.controller('DetailsController', DetailsController)
+	.controller('ParamPageController', ParamPageController);
 
-		self.$inject = ['$http'];
-		self.title = 'Detail Page';
+function MainController($scope) {
+	$scope.title = 'Main Page';
+}
 
-		$http
-			.get('api/films.json')
-			.then(onComplete)
-			.catch(onError);
+function DetailsController($http) {
+	var self = this;
 
-		function onComplete( response ) {
-			self.films = response.data;
-		}
+	self.$inject = ['$http'];
+	self.title = 'Detail Page';
 
-		function onError () {
-			self.error = "Error occurred! Sorry for inconvenience";
-		}
-	})
-	.controller('ParamPageController', function ($routeParams) {
-		this.pageId = $routeParams.pageId;
-	});
+	$http
+		.get('api/films.json')
+		.then(onComplete)
+		.catch(onError);
+
+	function onComplete( response ) {
+		self.films = response.data;
+	}
+
+	function onError () {
+		self.error = "Error occurred! Sorry for inconvenience";
+	}
+}
+
+function ParamPageController ($routeParams) {
+	this.$inject = ['$routeParams'];
+	this.title = 'Param Page Title';
+	this.pageId = $routeParams.pageId;
+}
