@@ -4,7 +4,7 @@
 	articleBox.directive('articleBox', function() {
 		return {
 			transclude: true,
-			templateUrl: './09-07-article-box/09-07-article.tpl.html',
+			templateUrl: './07-article-box.tpl.html',
 			scope: {
 				title: '='
 			}

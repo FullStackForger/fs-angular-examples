@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" ng-app="detailsApp">
+<head>
+<meta charset="utf-8">
+<style>
+	.my-directive > div { border: solid 1px gray; padding: 10px; margin: 10px; }
+</style>
+</head>
+<body>
+
+<div ng-controller="PersonController as personCtrl">
+	<!-- notice that attribute get-data corresponds to scope.getData of directive -->
+	<details-info get-data="personCtrl.getArray(limit)" get-total="personCtrl.count()"></details-info>
+</div>
+
+<script src="../../bower_components/angular/angular.js"></script>
+<script src="./08-details-app.js"></script>
+</body>
+</html>

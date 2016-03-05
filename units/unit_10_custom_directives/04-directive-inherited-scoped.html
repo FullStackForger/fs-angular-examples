@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<style> .bordered { border: 1px solid gray; margin: 10px; padding: 10px; } </style>
+<script src="../../bower_components/angular/angular.js"></script>
+<script>
+
+angular.module('myApp', [])
+	.controller('FirstController', ['$scope', function($scope) {
+		$scope.person = {
+			name: 'John Smith',
+			title: 'Developer'
+		};
+	}])
+	.controller('SecondController', ['$scope', function($scope) {
+		$scope.person = {
+			name: 'Tom Black',
+			title: 'Designer'
+		};
+	}])
+	.directive('personalDetails', function() {
+		return {
+			template: 'person: <b>{{person.name}}</b> title: <b>{{person.title}}</b>'
+		};
+	});
+
+</script>
+</head>
+<body>
+	<div ng-controller="FirstController" class="bordered">
+		<p>FirstController</p><hr />
+		<personal-details></personal-details>
+	</div>
+	<div ng-controller="SecondController" class="bordered">
+		<p>SecondController</p><hr />
+		<personal-details></personal-details>
+	</div>
+
+</body>
+</html>

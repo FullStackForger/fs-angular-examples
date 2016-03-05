@@ -6,35 +6,25 @@
 <script>
 
 angular.module('myApp', [])
-	.controller('FirstController', ['$scope', function($scope) {
+	.controller('Controller', ['$scope', function($scope) {
 		$scope.person = {
 			name: 'John Smith',
 			title: 'Developer'
 		};
 	}])
-	.controller('SecondController', ['$scope', function($scope) {
-		$scope.person = {
-			name: 'Tom Black',
-			title: 'Designer'
-		};
-	}])
 	.directive('personalDetails', function() {
 		return {
-			template: 'person: <b>{{person.name}}</b> title: <b>{{person.title}}</b>'
+			//restrict: 'AE', // default behaviour
+			templateUrl: '02.tpl.html'
 		};
 	});
 
 </script>
 </head>
 <body>
-
-	<div ng-controller="FirstController">
+	<div ng-controller="Controller">
 		<personal-details></personal-details>
+		<div personal-details></div>
 	</div>
-
-	<div ng-controller="SecondController">
-		<personal-details></personal-details>
-	</div>
-
 </body>
 </html>

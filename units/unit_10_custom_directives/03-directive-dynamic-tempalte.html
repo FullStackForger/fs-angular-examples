@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <script src="../../bower_components/angular/angular.js"></script>
+<style>
+.boxed { border: 1px solid #bababa; margin: 10px; padding: 10px; }
+</style>
 <script>
 
 angular.module('myApp', [])
@@ -14,20 +17,21 @@ angular.module('myApp', [])
 	}])
 	.directive('personalDetails', function() {
 		return {
-			//restrict: 'AE', // default behaviour
-			templateUrl: '09-02.tpl.html'
+			//restrict: 'E',
+			templateUrl: function(elem, attr){
+				return '03.'+attr.type+'.tpl.html';
+			}
 		};
 	});
 
 </script>
 </head>
 <body>
-	<div ng-controller="Controller">
-		<personal-details></personal-details>
-	</div>
 
 	<div ng-controller="Controller">
-		<div personal-details></div>
+		<div class="boxed"><personal-details type="plane"></personal-details></div>
+		<div class="boxed"><personal-details type="div"></personal-details></div>
 	</div>
+
 </body>
 </html>

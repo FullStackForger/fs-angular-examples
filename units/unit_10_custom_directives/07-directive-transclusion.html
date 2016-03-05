@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<script src="../../bower_components/angular/angular.js"></script>
+	<script src="./07-article-box.js"></script>
+	<script>
+		angular
+			.module('myApp', ['articleBox'])
+			.controller('PersonController', ['$scope', function($scope) {
+				this.person = { name: 'John Smith', title: 'Developer'};
+			}]);
+	</script>
+	<style>
+		.article-box { padding: 10px; background: #efefef; margin: 10px; }
+		[ng-transclude] { border: 1px solid #454545; padding: 10px; }
+	</style>
+</head>
+<body>
+
+<div ng-controller="PersonController as personCtrl">
+
+	<article-box title="'My 1nd article'">
+		<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+		<img src="https://jptacek.com/2014/02/angularJS-templates/angularLogo.png" alt="angular">
+	</article-box>
+
+
+	<article-box title="'My 2nd article'">
+		<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+	</article-box>
+
+	<article-box title="'My 3rd article'">
+		<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+		<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+	</article-box>
+
+</div>
+
+</body>
+</html>
