@@ -5,15 +5,15 @@
 </head>
 <body>
 
-<div ng-init="rebels = [
-    {name: 'Luke Skywalker', profession: 'Jedi', age: 19},
-    {name: 'Ben Kenobi', profession: 'Jedi', age:  56},
-    {name: 'Han Solo', profession: 'smuggler', age: 32 },
-    {name: 'Chewbacca', profession: 'pilot', age: 200}
-];"></div>
+<div ng-init="rebels = {
+    'luke': {name: 'Luke Skywalker', profession: 'Jedi', age: 19},
+    'ben': {name: 'Ben Kenobi', profession: 'Jedi', age:  56},
+    'han': {name: 'Han Solo', profession: 'smuggler', age: 32 },
+    'chewbacca': {name: 'Chewbacca', profession: 'pilot', age: 200}
+};"></div>
 
 <select ng-model="rebel"
-        ng-options="rebel.name for rebel in rebels">
+        ng-options="value.name for (key , value) in rebels">
 	<option value="">Select a rebel</option>
 </select>
 
