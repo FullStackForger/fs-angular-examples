@@ -11,9 +11,10 @@
  {name: 'Han Solo', profession: 'smuggler', weapon: 'laser blaster', age: 32 },
  {name: 'Chewbacca', profession: 'pilot', weapon: 'bowcaster' , age: 200},
 ];">
-	Filter: <code>{name: 'Skywalker', profession: 'Jedi'}</code>
+	{{ filterObj = {name: 'Skywalker', profession: 'Jedi'} }}
+	<pre>{{filterObj | json}}</pre>
 	<ul>
-		<li ng-repeat="rebel in rebels | filter: {name: 'Skywalker', profession: 'Jedi'}">
+		<li ng-repeat="rebel in rebels | filter: filterObj">
 			{{ rebel.name }} (age: {{ rebel.age}})
 			is a {{ rebel.profession }} fighting with a {{ rebel.weapon }}.
 		</li>
