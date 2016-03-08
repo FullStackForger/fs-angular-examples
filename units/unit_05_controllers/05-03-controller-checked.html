@@ -11,7 +11,7 @@
 			.controller('MyController', MyController);
 
 		function MyController($scope) {
-			$scope.checked = true;
+			$scope.isChecked = true;
 			// additional logic
 		}
 	</script>
@@ -20,7 +20,7 @@
 <div ng-controller="MyController">
 	Checkbox with property on local <code>MyController</code> scope
 	<div>
-		<input type="checkbox" ng-checked="checked">
+		<input type="checkbox" ng-checked="isChecked">
 		This should be checked
 	</div>
 </div>
@@ -28,7 +28,7 @@
 
 Checkbox with property on global scope
 <div>
-	<input type="checkbox" ng-checked="checked">
+	<input type="checkbox" ng-checked="isChecked">
 	This should be checked
 </div>
 </body>
