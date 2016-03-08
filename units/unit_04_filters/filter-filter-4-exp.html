@@ -53,7 +53,6 @@ Group filter by: {{selection}}
 		        ng-options="rebel.name group by rebel[selection] for rebel in rebels | orderBy: ['profession', 'name']" >
 			<option value="">Select a rebel</option>
 		</select>
-		<option ng-repeat="s in itemlist" value="{{s.value}}">{{s.name}}</option>
 	</p>
 
 	<p><code>ng-repeat</code></p>
