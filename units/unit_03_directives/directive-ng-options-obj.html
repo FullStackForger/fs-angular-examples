@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div ng-init="rebels = [
+    {name: 'Luke Skywalker', profession: 'Jedi', age: 19},
+    {name: 'Ben Kenobi', profession: 'Jedi', age:  56},
+    {name: 'Han Solo', profession: 'smuggler', age: 32 },
+    {name: 'Chewbacca', profession: 'pilot', age: 200}
+];"></div>
+
+<select ng-model="rebel"
+        ng-options="rebel.name for rebel in rebels">
+	<option value="">Select a rebel</option>
+</select>
+
+<p>Selected: {{ rebel.name }}  ({{ rebel.profession }})</p>
+
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>
