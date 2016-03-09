@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<body>
+<div ng-controller="ActorController">
+	<div ng-if="error">{{error}}</div>
+	<div ng-if="!error">
+		<p>
+			name: {{actor.nameUppercased}}
+		</p>
+		<p>dob: {{actor.dob | date : 'dd / MMMM / yyyy'}}</p>
+		<p>bio: {{actor.bio}}</p>
+	</div>
+</div>
+<script src="../../bower_components/angular/angular.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
