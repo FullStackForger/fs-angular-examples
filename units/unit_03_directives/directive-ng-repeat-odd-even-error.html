@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="utf-8">
+	<style>
+		.odd { color: blue; }
+		.even { color: green; }
+	</style>
+</head>
+<body ng-init="array=[
+	{name: 'Tom', age: 30},
+	{name: 'Tom', age: 31},
+	{name: 'John', age: 20},
+	{name: 'Merry', age: 40},
+	{name: 'Merry', age: 42},
+	{name: 'Peter', age: 10},
+	{name: 'Jenny', age: 32}
+]">
+
+<ul>
+	ngShow
+	<li ng-repeat="item in array"
+		ng-show="item.age > 20"
+		ng-class="{even: $even, odd: $odd}">
+		{{item.name}}, age: item {{item.age}}
+	</li>
+<hr />
+	ngIf
+	<li ng-repeat="item in array"
+	    ng-if="item.age > 20"
+	    ng-class="{even: $even, odd: $odd}">
+		{{item.name}}, age: item {{item.age}}
+	</li>
+</ul>
+
+<script src="../../bower_components/angular/angular.js"></script>
+</body>
+</html>
